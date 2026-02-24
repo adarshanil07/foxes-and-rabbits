@@ -60,14 +60,6 @@ public abstract class Animal extends Organism
     
     protected abstract int diseaseDuration();
     
-    // DISEASES
-    // probability of being infected initially (beginning of simulation)
-    private static final double INITIAL_INFECTION_CHANCE = 0.01;
-    // probability of disease spreading
-    private static final double DISEASE_SPREAD = 0.1;
-    // how long the infection lasts before death (terminal) -> could later make this vary per animal but for now constant
-    private static final int DISEASE_DURATION = 20;
-
     
     /**
      * Constructor for objects of class Animal.
@@ -124,7 +116,7 @@ public abstract class Animal extends Organism
      */
     private boolean isInitiallyInfected() 
     {
-        infected = (rand.nextDouble() <= INITIAL_INFECTION_CHANCE);
+        infected = (rand.nextDouble() <= initialInfectionChance());
         return infected;
     }
     
