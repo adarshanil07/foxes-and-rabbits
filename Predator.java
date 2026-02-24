@@ -66,8 +66,10 @@ public abstract class Predator extends Animal
         
         // weather can affect hunger levels ----- NEED TO FIGURE OUT IF THIS IS BAD PROGRAMMING PRACTICE AND IF HELPER METHOD NEEDED
         WeatherType weather = currentField.getWeather();
-        if ((weather == WeatherType.STORM) || (weather == WeatherType.CLOUDY)) {
-            decrementHunger();              // these cause the hunger to decrement an extra bit since more energy
+        // hunger hit
+        int hungerHit = getWeatherAffectedHungerHit(weather);
+        for (int i = 0; i < hungerHit; i++) {
+            decrementHunger();
         }
         
         // all logic for decreasing hunger inside decrementHunger 

@@ -229,21 +229,14 @@ public abstract class Animal extends Organism
      * Weather affects animal's hunger as well, as in the storm more energy is burned therefore more hunger
      * 
      * This returns additional hunger reduction which is caused by the weather (STORM/RAIN)
-     
+    */ 
     protected int getWeatherAffectedHungerHit(WeatherType weather)
     {
-        if (weather == WeatherType.STORM) {
+        if ((weather == WeatherType.STORM) || (weather == WeatherType.CLOUDY)) {
             return 1;
         }
-        
-        // prolly remove, since otherwise too big of an effect
-        //else if (weather == WeatherType.CLOUDY) {
-        //    return 1;
-        //}
-        
         return 0;
     }
-    */
     
     /**
      * INCREMENT AGE

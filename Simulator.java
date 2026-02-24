@@ -110,12 +110,17 @@ public class Simulator
     {
         clock.tick();
         
+        // if step count mod 8 == 0 then we will update weather
+        if ((clock.getStepCount() % 8) == 0) {
+            weather.updateWeather();    
+        }
+        
+
         // Use a separate Field to store the starting state of
         // the next step.
         Field nextFieldState = new Field(field.getDepth(), field.getWidth());
 
-        // update weather per step
-        weather.updateWeather();        
+        // sets Weather for a field
         nextFieldState.setWeather(weather.getWeather());
         
         List<Organism> organisms = field.getOrganisms();
