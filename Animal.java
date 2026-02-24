@@ -292,7 +292,7 @@ public abstract class Animal extends Organism
         if (breedChance > 1.0) {
             breedChance = 1.0;
         }
-        if (breedChance < 1.0) {
+        if (breedChance < 0.0) {
             breedChance = 0.0;
         }
         

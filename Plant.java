@@ -1,20 +1,23 @@
 import java.util.Random;
-import java.util.List;              // obtain all free adjacent locations and take one ygm cuZ
+import java.util.List;             
 /**
- * Write a description of class Plant here.
+ * Superclass for all plants in the simulation.
+ * 
+ * A plant never moves. It is able to age per simulation step, will die once it reaches its
+ * maximum age. The weather can affect its maximum age, weather conditions can increase lifespan 
+ * while also decrease lifespan of the plant. It is able to spread by creating a new seedling in 
+ * neighbouring location based on a probability.
  *
  * @author Jushan and Adarsh
  * @version v1
  */
 public abstract class Plant extends Organism
 {
-    // plants age 
-    private int age;            // fixed number of yrs before plant dies?
-    // randomiser for deciding whether plant spreads
-    private static final Random RANDOM = Randomizer.getRandom();
+    // plants current age in steps 
+    private int age;            
+    private static final Random rand = Randomizer.getRandom();
 
-    // dk whether to put protected abstract methods here or below constructor?
-    // max age for each plant
+    
     protected abstract int getMaxAge();
     // probability of plant seeds spreading
     protected abstract double getChanceOfSpread();
@@ -132,7 +135,7 @@ public abstract class Plant extends Organism
             spreadChance = 1.0;        
         }
         
-        if (RANDOM.nextDouble() <= spreadChance) {
+        if (rand.nextDouble() <= spreadChance) {
             List<Location> freeFields = currentField.getFreeAdjacentLocations(getLocation());
             
             if (!freeFields.isEmpty()) {
