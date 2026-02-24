@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Plant
+comment0.text=\n\ Write\ a\ description\ of\ class\ Plant\ here.\n\n\ @author\ Jushan\ and\ Adarsh\n\ @version\ v1\n
+comment1.params=
+comment1.target=int\ getMaxAge()
+comment2.params=
+comment2.target=double\ getChanceOfSpread()
+comment3.params=location
+comment3.target=Plant\ newSeedling(Location)
+comment4.params=location
+comment4.target=Plant(Location)
+comment4.text=\n\ Constructor\ for\ objects\ of\ class\ Plant\n
+comment5.params=
+comment5.target=void\ incrementAge()
+comment5.text=\n\ incrementing\ the\ age\ of\ the\ plant\n
+comment6.params=currentField\ nextFieldState
+comment6.target=void\ act(Field,\ Field)
+comment6.text=\n\ both\ plants\ gonna\ act\ the\ same\n\ \n\ gpt\ says\ if\ it\ was\ an\ abstract\ class\ in\ a\ class\ above\ this\ in\ the\ hierarchy\ thing\n\ then\ we\ gotta\ do\ @override\ ->\ gotta\ check\ that\ out\n
+comment7.params=currentField\ nextFieldState
+comment7.target=void\ spread(Field,\ Field)
+comment7.text=\n\ Plant\ probability\ of\ spreading\ to\ neighbouring\ fields\ and\ growing\ \n
+numComments=8

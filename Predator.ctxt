@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Predator
+comment0.text=\n\ Write\ a\ description\ of\ class\ Predator\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=location
+comment1.target=Predator(Location)
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Predator\n
+comment2.params=field
+comment2.target=Location\ getFoodLocation(Field)
+comment3.params=organism
+comment3.target=void\ changeHungerValues(Organism)
+comment4.params=currentField\ nextFieldState
+comment4.target=void\ act(Field,\ Field)
+numComments=5

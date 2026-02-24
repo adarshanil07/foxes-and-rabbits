@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Kelp
+comment0.text=\n\ Write\ a\ description\ of\ class\ Kelp\ here.\n\n\ @author\ Jushan\ and\ Adarsh\n\ @version\ v1\n
+comment1.params=location
+comment1.target=Kelp(Location)
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Kelp\n
+comment2.params=
+comment2.target=int\ getMaxAge()
+comment2.text=\n\ GETTER\ METHOD\ FOR\ GETTING\ MAX\ AGE\n\ \n\ gonna\ use\ this\ method\ in\ spread\ and\ grow\ logic\ in\ plant\ class\ \n
+comment3.params=
+comment3.target=double\ getChanceOfSpread()
+comment3.text=\n\ Get\ probability\ of\ seeds\ spreading\ \n
+comment4.params=location
+comment4.target=Plant\ newSeedling(Location)
+comment4.text=\n\ creating\ a\ new\ seedling\n
+numComments=5

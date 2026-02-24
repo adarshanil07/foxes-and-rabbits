@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=MarineAlgae
+comment0.text=\n\ Write\ a\ description\ of\ class\ MarineAlgae\ here.\n\n\ @author\ Jushan\ and\ Adarsh\n\ @version\ v1s\n
+comment1.params=location
+comment1.target=MarineAlgae(Location)
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ MarineAlgae\n
+comment2.params=
+comment2.target=int\ getMaxAge()
+comment2.text=\n\ GETTER\ METHOD\ FOR\ GETTING\ MAX\ AGE\n
+comment3.params=
+comment3.target=double\ getChanceOfSpread()
+comment3.text=\n\ Get\ probability\ of\ seeds\ spreading\ \n
+comment4.params=location
+comment4.target=Plant\ newSeedling(Location)
+comment4.text=\n\ creating\ a\ new\ seedling\n
+numComments=5

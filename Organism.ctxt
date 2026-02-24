@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Organism
+comment0.text=\n\ This\ is\ a\ superclass\ for\ anything\ which\ exists\ in\ the\ field\ and\ updates\ on\ each\ step.\n\ Plants\ and\ Animals\ can\ both\ exist.\ We\ could\ not\ have\ Plant\ Class\ inside\ Animal\ Class\ as\ that\ does\ not\ make\ sense\ so\ we\ separated\ it\ and\ put\ it\ under\ a\ shared\ superclass\ called\ Organism.\n\n\ Inside\ this\ class,\ we\ have\ the\ location\ of\ each\ organism,\ whether\ they\ are\ alive/dead\ and\ also\ their\ behaviour\ since\ each\ organism\ updates\ after\ each\ step.\n\n\ Abstract\ since\ it\ is\ a\ general\ concept\ and\ we\ are\ not\ able\ to\ create\ it\ directly.\ \n\ Like\ we\ cannot\ do\ new\ Organism(location);\n\ \n\ @author\ Jushan\ and\ Adarsh\n\ @version\ v1\n
+comment1.params=location
+comment1.target=Organism(Location)
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Organism\n
+comment2.params=currentField\ nextFieldState
+comment2.target=void\ act(Field,\ Field)
+comment2.text=\n\ NEED\ TO\ HAVE\ the\ act()\ method\ in\ here\ somehow\ \n\ \n\ *DELETE\ AFTER*\ We\ do\ not\ put\ implementation\ inside\ the\ organism.act()\ since\ the\ behaviour\ is\ different\ for\ predators,\ prey,\ etc.\n\ We\ are\ essentially\ telling\ Java\ that\ anything\ that\ is\ an\ organism\ should\ implement\ this\ method,\ but\ all\ subclassess\ will\ provide\ a\ diff\ version\ of\ act()\n
+comment3.params=
+comment3.target=boolean\ isAlive()
+comment3.text=\n\ Returns\ whether\ or\ not\ the\ organism\ is\ alive\ or\ not\n
+comment4.params=
+comment4.target=void\ setDead()
+comment4.text=\n\ Marking\ an\ organism\ as\ dead\ and\ preventing\ logic\ from\ placing\ dead\ organisms\ into\ nextFieldState\n
+comment5.params=
+comment5.target=Location\ getLocation()
+comment5.text=\n\ Returns\ the\ current\ location\ of\ the\ organism\ \n\ and\ it\ returns\ "null"\ if\ dead\n
+comment6.params=newLocation
+comment6.target=void\ setLocation(Location)
+comment6.text=\n\ Update\ the\ organism's\ location\n\ Only\ call\ when\ the\ organism\ has\ moved\ locations\n
+numComments=7

@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=TimeOfDay
+comment0.text=\r\n\ Enumeration\ class\ TimesOfDay\ \r\n\r\n\ @author\ Adarsh\ &\ Jushan\r\n\ @version\ 18.02.2026\ 13\:16\r\n
+comment1.params=hour\ formattedTime
+comment1.target=TimeOfDay(int,\ java.lang.String)
+comment2.params=
+comment2.target=int\ getHour()
+comment3.params=
+comment3.target=java.lang.String\ getFormattedTime()
+comment4.params=
+comment4.target=TimeOfDay\ next()
+numComments=5
