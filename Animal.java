@@ -271,7 +271,6 @@ public abstract class Animal extends Organism
      * @param nextFieldState The new state being built.
      */
     
-    public abstract void act(Field currentField, Field nextFieldState);
     
     /**
      * Weather affects pregnancy aswell

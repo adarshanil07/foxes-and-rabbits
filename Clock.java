@@ -22,6 +22,10 @@ public class Clock
         stepCount = 0;
     }
     
+    public TimeOfDay getCurrentTime() {
+        return currentTime;
+    }
+    
     public String getFormattedTime() {
         return currentTime.getFormattedTime();
         }

@@ -31,7 +31,7 @@ public abstract class Organism
      * *DELETE AFTER* We do not put implementation inside the organism.act() since the behaviour is different for predators, prey, etc.
      * We are essentially telling Java that anything that is an organism should implement this method, but all subclassess will provide a diff version of act()
      */
-    public abstract void act(Field currentField, Field nextFieldState);
+    public abstract void act(Field currentField, Field nextFieldState, TimeOfDay currentTime);
 
     /**
      * Returns whether or not the organism is alive or not

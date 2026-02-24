@@ -53,7 +53,7 @@ public abstract class Prey extends Animal
         return (plant.foodValue() + this.hungerLevel) >= this.maxFoodLevel();
     }
     
-    public void act(Field currentField, Field nextFieldState) {
+    public void act(Field currentField, Field nextFieldState, TimeOfDay currentTime) {
         incrementAge();
         decrementHunger();    
         
@@ -84,6 +84,11 @@ public abstract class Prey extends Animal
                     endPregnancy(nextFieldState);
                 }}
             else if (checkPregnancyPossible(currentField)) {startPregnancy();}
+            
+            if(!isActiveAt(currentTime)) {
+                nextFieldState.place(this, getLocation());
+                return;
+            }
             
             // Logic behind searching and finding food 
             Location nextLocation = getFoodLocation(currentField);

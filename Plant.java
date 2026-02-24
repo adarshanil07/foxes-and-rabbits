@@ -78,7 +78,7 @@ public abstract class Plant extends Organism
      * gpt says if it was an abstract class in a class above this in the hierarchy thing
      * then we gotta do @override -> gotta check that out
      */
-    public void act(Field currentField, Field nextFieldState)
+    public void act(Field currentField, Field nextFieldState, TimeOfDay currentTime)
     {
         // after each step, age of plant increments?
         incrementAge();

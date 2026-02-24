@@ -55,7 +55,9 @@ public abstract class Predator extends Animal
     }
     
     
-    public void act(Field currentField, Field nextFieldState) {
+    public void act(Field currentField, Field nextFieldState, TimeOfDay currentTime) {
+        
+        ;
         
         // NEED TO CHECK IF THESE ARE BAD PROGRAMMING PRACTICE SINCE WE ARE CALLING METHODS
         // FROM THE CLASS ABOVE IT IN THE HIERARCHY (ANIMAL)
@@ -93,6 +95,10 @@ public abstract class Predator extends Animal
                 }}
             else if (checkPregnancyPossible(currentField)) {startPregnancy();}
             
+            if(!isActiveAt(currentTime)) {
+                nextFieldState.place(this, getLocation());
+                return;
+            }
             
             // Logic behind searching and finding food 
             Location nextLocation = getFoodLocation(currentField);

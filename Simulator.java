@@ -125,7 +125,7 @@ public class Simulator
         
         List<Organism> organisms = field.getOrganisms();
         for (Organism anOrganism : organisms) {
-            anOrganism.act(field, nextFieldState);
+            anOrganism.act(field, nextFieldState, clock.getCurrentTime());
         }
         
         // Replace the old state with the new one.
