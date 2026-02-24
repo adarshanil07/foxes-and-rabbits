@@ -25,10 +25,12 @@ public class SimulatorView extends JFrame
     private final String POPULATION_PREFIX = "Population: ";
     private final String TIME_PREFIX = "Time: ";
     private final String DAY_PREFIX = "Day: ";
+    private final String WEATHER_PREFIX = "Weather: ";
     private final JLabel stepLabel;
     private final JLabel population;
     private final JLabel time;
     private final JLabel day;
+    private final JLabel weatherLabel;
     private final FieldView fieldView;
     
     // A map for storing colors for participants in the simulation
@@ -57,9 +59,10 @@ public class SimulatorView extends JFrame
         setColor(MarineAlgae.class, Color.green.darker());
 
         setTitle("Ocean Simulation");
-        stepLabel = new JLabel(STEP_PREFIX, JLabel.LEFT);
-        time = new JLabel(TIME_PREFIX, JLabel.RIGHT);
-        day = new JLabel(DAY_PREFIX, JLabel.CENTER);
+        stepLabel = new JLabel(STEP_PREFIX);
+        time = new JLabel(TIME_PREFIX);
+        day = new JLabel(DAY_PREFIX);
+        weatherLabel = new JLabel(WEATHER_PREFIX);
         population = new JLabel(POPULATION_PREFIX, JLabel.CENTER);
         
         setLocation(100, 50);
@@ -68,10 +71,18 @@ public class SimulatorView extends JFrame
 
         Container contents = getContentPane();
         
-        JPanel topPanel = new JPanel(new BorderLayout());
-        topPanel.add(stepLabel, BorderLayout.WEST);
-        topPanel.add(time, BorderLayout.EAST);
-        topPanel.add(day, BorderLayout.CENTER);
+        // splits panel into 4 and gives them horizontal spacing of 30
+        JPanel topPanel = new JPanel(new GridLayout(1,4, 30, 0));
+        topPanel.add(stepLabel);
+        topPanel.add(time);
+        topPanel.add(day);
+        topPanel.add(weatherLabel);        
+                
+        // lets them be visually balanced
+        stepLabel.setHorizontalAlignment(JLabel.CENTER);
+        stepLabel.setHorizontalAlignment(JLabel.CENTER);
+        stepLabel.setHorizontalAlignment(JLabel.CENTER);
+        stepLabel.setHorizontalAlignment(JLabel.CENTER);
         
         contents.add(topPanel, BorderLayout.NORTH);
         contents.add(fieldView, BorderLayout.CENTER);
@@ -117,10 +128,12 @@ public class SimulatorView extends JFrame
         }
         
         int dayCount = step/4;
+        WeatherType currentWeather = field.getWeather();
         
         stepLabel.setText(STEP_PREFIX + step);
         time.setText(TIME_PREFIX + formattedTime);
         day.setText(DAY_PREFIX + dayCount);
+        weatherLabel.setText(WEATHER_PREFIX + currentWeather);
         
         stats.reset();
         

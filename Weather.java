@@ -55,4 +55,12 @@ public class Weather
         return currentWeather;
     }
     
+    /**
+     * When simulation is reset, weather type should set back to clear
+     */
+    public void reset()
+    {
+        currentWeather = WeatherType.CLEAR;
+    }
+    
 }

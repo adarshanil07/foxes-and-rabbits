@@ -142,7 +142,10 @@ public class Simulator
     {
         clock.reset();
         
+        weather.reset();
+        
         field.clear();
+        field.setWeather(weather.getWeather());         // sets current weather when reset which should be clear
         populate();
         view.showStatus(clock.getStepCount(), clock.getFormattedTime(), field);
     }
