@@ -32,11 +32,6 @@ public class Simulator
 
     //clock
     private Clock clock = new Clock();
-;
-    
-    
-    
-    
     // The current state of the field.
     private Field field;
     // The current step of the simulation.
