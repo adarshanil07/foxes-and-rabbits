@@ -23,8 +23,12 @@ public class SimulatorView extends JFrame
 
     private final String STEP_PREFIX = "Step: ";
     private final String POPULATION_PREFIX = "Population: ";
+    private final String TIME_PREFIX = "Time: ";
+    private final String DAY_PREFIX = "Day: ";
     private final JLabel stepLabel;
     private final JLabel population;
+    private final JLabel time;
+    private final JLabel day;
     private final FieldView fieldView;
     
     // A map for storing colors for participants in the simulation
@@ -53,7 +57,9 @@ public class SimulatorView extends JFrame
         setColor(MarineAlgae.class, Color.green.darker());
 
         setTitle("Ocean Simulation");
-        stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
+        stepLabel = new JLabel(STEP_PREFIX, JLabel.LEFT);
+        time = new JLabel(TIME_PREFIX, JLabel.RIGHT);
+        day = new JLabel(DAY_PREFIX, JLabel.CENTER);
         population = new JLabel(POPULATION_PREFIX, JLabel.CENTER);
         
         setLocation(100, 50);
@@ -61,7 +67,13 @@ public class SimulatorView extends JFrame
         fieldView = new FieldView(height, width);
 
         Container contents = getContentPane();
-        contents.add(stepLabel, BorderLayout.NORTH);
+        
+        JPanel topPanel = new JPanel(new BorderLayout());
+        topPanel.add(stepLabel, BorderLayout.WEST);
+        topPanel.add(time, BorderLayout.EAST);
+        topPanel.add(day, BorderLayout.CENTER);
+        
+        contents.add(topPanel, BorderLayout.NORTH);
         contents.add(fieldView, BorderLayout.CENTER);
         contents.add(population, BorderLayout.SOUTH);
         pack();
@@ -98,13 +110,18 @@ public class SimulatorView extends JFrame
      * @param step Which iteration step it is.
      * @param field The field whose status is to be displayed.
      */
-    public void showStatus(int step, Field field)
+    public void showStatus(int step, String formattedTime, Field field)
     {
         if(!isVisible()) {
             setVisible(true);
         }
-            
+        
+        int dayCount = step/4;
+        
         stepLabel.setText(STEP_PREFIX + step);
+        time.setText(TIME_PREFIX + formattedTime);
+        day.setText(DAY_PREFIX + dayCount);
+        
         stats.reset();
         
         fieldView.preparePaint();

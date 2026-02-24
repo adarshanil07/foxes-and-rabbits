@@ -30,11 +30,16 @@ public class Simulator
     private static final double MARINEALGAE_CREATION_PROBABILITY = 0.15;
 
 
+    //clock
+    private Clock clock = new Clock();
+;
+    
+    
+    
     
     // The current state of the field.
     private Field field;
     // The current step of the simulation.
-    private int step;
     // A graphical view of the simulation.
     private final SimulatorView view;
     // Weather System for weather
@@ -46,7 +51,7 @@ public class Simulator
     public Simulator()
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
-        weather = new Weather();         
+        weather = new Weather(); 
         field.setWeather(weather.getWeather());
     }
     
@@ -103,7 +108,7 @@ public class Simulator
      */
     public void simulateOneStep()
     {
-        step++;
+        clock.tick();
         
         // Use a separate Field to store the starting state of
         // the next step.
@@ -122,7 +127,7 @@ public class Simulator
         field = nextFieldState;
 
         reportStats();
-        view.showStatus(step, field);
+        view.showStatus(clock.getStepCount(), clock.getFormattedTime(), field);
     }
         
     /**
@@ -130,10 +135,11 @@ public class Simulator
      */
     public void reset()
     {
-        step = 0;
+        clock.reset();
+        
         field.clear();
         populate();
-        view.showStatus(step, field);
+        view.showStatus(clock.getStepCount(), clock.getFormattedTime(), field);
     }
     
     /**

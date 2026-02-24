@@ -54,6 +54,7 @@ public class Octopus extends Predator
         return false;
     }
     
+    
     public boolean isActiveAt(TimeOfDay currentTime)
     {
         if (ACTIVE_TIMES.contains(currentTime)) {

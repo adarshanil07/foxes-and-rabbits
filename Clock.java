@@ -26,9 +26,13 @@ public class Clock
         return currentTime.getFormattedTime();
         }
         
+    public int getStepCount() {
+        return stepCount;
+    }
+        
     public void tick() { 
         stepCount++;
-        currentTime.next();
+        currentTime = currentTime.next();
         }
     }
     
