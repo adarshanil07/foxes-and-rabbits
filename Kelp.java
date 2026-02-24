@@ -8,11 +8,11 @@
 public class Kelp extends Plant
 {
     // max age of kelp
-    private static final int MAX_AGE = 240;
+    private static final int MAX_AGE = 120;
     // chance of spreading per step
-    private static final double CHANCE_OF_SPREAD = 0.005;
+    private static final double CHANCE_OF_SPREAD = 0.032;
     // food value for marine algae
-    private static final int FOOD_VALUE = 8;
+    private static final int FOOD_VALUE = 14;
 
     /**
      * Constructor for objects of class Kelp

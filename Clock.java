@@ -5,8 +5,6 @@
  * @version 16.02.2026 19:05
  */
 
-import java.util.Iterator;
-
 public class Clock
 {
     // The current time in the simulator.

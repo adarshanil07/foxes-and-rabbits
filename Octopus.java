@@ -14,11 +14,11 @@ public class Octopus extends Predator
     
     private static final int MAX_LITTER_SIZE = 8;
     
-    private static final double BREEDING_PROBABILITY = 0.08;
+    private static final double BREEDING_PROBABILITY = 0.35;
     
-    private static final int BREEDING_AGE = 160;
+    private static final int BREEDING_AGE = 60;
 
-    private static final int PREGNANCY_DURATION = 10;
+    private static final int PREGNANCY_DURATION = 6;
     
     private static final int DEATH_AGE = 480; // figure out if 10 years/ 10 hours/ 10 seconds
     // probability of being infected initially (beginning of simulation)
@@ -31,7 +31,7 @@ public class Octopus extends Predator
     
     private final Set<TimeOfDay> ACTIVE_TIMES = Set.of(TimeOfDay.MIDNIGHT, TimeOfDay.DAWN);
     
-    private final List<Class<?>> EDIBLE_ORGANISMS = List.of(Parrotfish.class, HermitCrab.class); //Krill.class);
+    private final List<Class<?>> EDIBLE_ORGANISMS = List.of(HermitCrab.class, Krill.class); //Krill.class);
 
     
 

@@ -15,19 +15,19 @@ public class Simulator
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 200;
     // The probability that a tiger shark will be created in any given grid position.
-    private static final double TIGERSHARK_CREATION_PROBABILITY = 0.02;
+    private static final double TIGERSHARK_CREATION_PROBABILITY = 0.020;
     //The probability that an octopus will be created in any given grid position.
-    private static final double OCTOPUS_CREATION_PROBABILITY = 0.15;
+    private static final double OCTOPUS_CREATION_PROBABILITY = 0.020;
     // The probability that a parrot fish will be created in any given position.
-    private static final double PARROTFISH_CREATION_PROBABILITY = 0.10;  
+    private static final double PARROTFISH_CREATION_PROBABILITY = 0.235;  
     // The probability that a krill will be created in any given position.
-    private static final double KRILL_CREATION_PROBABILITY = 0.10; 
+    private static final double KRILL_CREATION_PROBABILITY = 0.25; 
     // The probability that a hermit crab will be created in any given position.
-    private static final double HERMITCRAB_CREATION_PROBABILITY = 0.10;
+    private static final double HERMITCRAB_CREATION_PROBABILITY = 0.20;
     // The probability that a kelp will be created in any given position.
-    private static final double KELP_CREATION_PROBABILITY = 0.15;
+    private static final double KELP_CREATION_PROBABILITY = 0.90;
     // The probability that marine algae will be created in any given position.
-    private static final double MARINEALGAE_CREATION_PROBABILITY = 0.15;
+    private static final double MARINEALGAE_CREATION_PROBABILITY = 0.90;
 
 
     //clock

@@ -8,12 +8,20 @@ import java.util.Iterator;
  */
 public abstract class Prey extends Animal
 {
+    
+    private static final int INITIAL_FOOD_LEVEL = 65;
+    
     /**
      * Constructor for objects of class Prey
      */
     public Prey(Location location)
     {
         super(location);
+    }
+    
+    public int initialFoodLevel() 
+    {
+        return INITIAL_FOOD_LEVEL;
     }
     
     public Location getFoodLocation(Field field) {

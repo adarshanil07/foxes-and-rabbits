@@ -10,11 +10,11 @@ public class MarineAlgae extends Plant
     // DECIDE ALL AGES AND STUFF FOR ANIMALS/PLANTS (this is just rough)
     
     // max age of plant
-    private static final int MAX_AGE = 240;
+    private static final int MAX_AGE = 120;
     // chance of spreading per step
-    private static final double CHANCE_OF_SPREAD = 0.001;
+    private static final double CHANCE_OF_SPREAD = 0.03;
     // food value of kelp
-    private static final int FOOD_VALUE = 5;
+    private static final int FOOD_VALUE = 15;
     
     /**
      * Constructor for objects of class MarineAlgae

@@ -8,15 +8,15 @@ import java.util.Set;
  */
 public class Krill extends Prey
 {
-    private static final int MAX_FOOD_LEVEL = 35;
+    private static final int MAX_FOOD_LEVEL = 75;
     
     private static final int FOOD_VALUE = 6;
     
-    private static final int MAX_LITTER_SIZE = 7;
+    private static final int MAX_LITTER_SIZE = 8;
     
-    private static final double BREEDING_PROBABILITY = 0.1;
+    private static final double BREEDING_PROBABILITY = 0.22;
     
-    private static final int BREEDING_AGE = 20;
+    private static final int BREEDING_AGE = 16;
     
     private static final int PREGNANCY_DURATION = 2;
     // probability of being infected initially (beginning of simulation)

@@ -8,17 +8,17 @@ import java.util.Set;
  */
 public class Parrotfish extends Prey
 {
-    private static final int MAX_FOOD_LEVEL = 70;
+    private static final int MAX_FOOD_LEVEL = 90;
     
     private static final int FOOD_VALUE = 14;
     
     private static final int MAX_LITTER_SIZE = 8;
     
-    private static final double BREEDING_PROBABILITY = 0.1;
+    private static final double BREEDING_PROBABILITY = 0.26;
     
-    private static final int BREEDING_AGE = 20;
+    private static final int BREEDING_AGE = 40;
     
-    private static final int PREGNANCY_DURATION = 4;
+    private static final int PREGNANCY_DURATION = 3;
     
     private static final int DEATH_AGE = 320;
     // probability of being infected initially (beginning of simulation)
@@ -31,7 +31,7 @@ public class Parrotfish extends Prey
     
     private static final Set<TimeOfDay> ACTIVE_TIMES = Set.of(TimeOfDay.MIDDAY, TimeOfDay.DAWN);
     
-    private static final List<Class<?>> EDIBLE_ORGANISMS = List.of(MarineAlgae.class);
+    private static final List<Class<?>> EDIBLE_ORGANISMS = List.of(MarineAlgae.class, Kelp.class);
     
     public Parrotfish (Location location)
     {

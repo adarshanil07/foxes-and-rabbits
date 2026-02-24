@@ -26,9 +26,8 @@ public abstract class Animal extends Organism
     protected boolean pregnant = false;
     //infected Animals
     private boolean infected;
+    
     private int infectionDays;
-    // initial food level
-    private static final int INITAL_FOOD_LEVEL = 30;
     // hunger level 
     protected int hungerLevel;
     //Random
@@ -53,6 +52,7 @@ public abstract class Animal extends Organism
     
     protected abstract int foodValue();
 
+    protected abstract int initialFoodLevel();
     
     protected abstract double initialInfectionChance();
     
@@ -72,7 +72,7 @@ public abstract class Animal extends Organism
         infected = false;
         infectionDays = 0;
         gender = chooseGender();
-        hungerLevel = INITAL_FOOD_LEVEL;
+        hungerLevel = initialFoodLevel();
         infected = isInitiallyInfected();
     }
     

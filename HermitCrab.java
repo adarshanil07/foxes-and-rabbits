@@ -8,15 +8,15 @@ import java.util.Set;
  */
 public class HermitCrab extends Prey
 {
-    private static final int MAX_FOOD_LEVEL = 60;
+    private static final int MAX_FOOD_LEVEL = 85;
     
     private static final int FOOD_VALUE = 10;
     
-    private static final int MAX_LITTER_SIZE = 4;
+    private static final int MAX_LITTER_SIZE = 5;
     
-    private static final double BREEDING_PROBABILITY = 0.05;
+    private static final double BREEDING_PROBABILITY = 0.16;
     
-    private static final int BREEDING_AGE = 80;
+    private static final int BREEDING_AGE = 30;
     
     private static final int PREGNANCY_DURATION = 4;
 
@@ -30,7 +30,7 @@ public class HermitCrab extends Prey
     
     private static final Set<TimeOfDay> ACTIVE_TIMES = Set.of(TimeOfDay.DAWN, TimeOfDay.DUSK);
     
-    private static final List<Class<?>> EDIBLE_ORGANISMS = List.of(MarineAlgae.class, Kelp.class);
+    private static final List<Class<?>> EDIBLE_ORGANISMS = List.of(MarineAlgae.class);
     
     public HermitCrab (Location location)
     {
