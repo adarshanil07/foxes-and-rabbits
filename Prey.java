@@ -88,8 +88,9 @@ public abstract class Prey extends Animal
      */
     public void act(Field currentField, Field nextFieldState, TimeOfDay currentTime) {
         incrementAge();
-        decrementHunger();    
-        
+        decrementHunger(); 
+        updateInfection();
+        spreadInfection(currentField);
         
         WeatherType weather = currentField.getWeather();
         if ((weather == WeatherType.STORM) || (weather == WeatherType.CLOUDY)) {

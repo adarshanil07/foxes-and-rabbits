@@ -29,6 +29,8 @@ public class Simulator
     private static final double KELP_CREATION_PROBABILITY = 0.90;
     // The probability that marine algae will be created in any given position.
     private static final double MARINEALGAE_CREATION_PROBABILITY = 0.90;
+    // Number of steps before the weather changes
+    private static final int WEATHER_UPDATE_INTERVAL_STEPS = 8;
 
 
     // The clock controlling time progression and step count during simluation
@@ -46,8 +48,6 @@ public class Simulator
     public Simulator()
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
-        weather = new Weather(); 
-        field.setWeather(weather.getWeather());
     }
     
     /**
@@ -109,7 +109,7 @@ public class Simulator
         clock.tick();
         
         // Update weather every 8 steps
-        if ((clock.getStepCount() % 8) == 0) {
+        if ((clock.getStepCount() % WEATHER_UPDATE_INTERVAL_STEPS) == 0) {
             weather.updateWeather();    
         }
         
@@ -120,7 +120,7 @@ public class Simulator
         // sets Weather for a field
         nextFieldState.setWeather(weather.getWeather());
         
-        List<Organism> organisms = field.getOrganisms();
+        List<Organism> organisms = new ArrayList<>(field.getOrganisms());
         for (Organism anOrganism : organisms) {
             anOrganism.act(field, nextFieldState, clock.getCurrentTime());
         }
@@ -142,7 +142,6 @@ public class Simulator
         clock.reset();
         
         weather.reset();
-        
         field.clear();
         field.setWeather(weather.getWeather());         // sets current weather when reset which should be clear
         populate();
@@ -151,16 +150,14 @@ public class Simulator
     
     /**
      * Randomly populate the field with organisms based on the configuration 
-     * probability constants
+     * probability constants. In the simulation, only one organism can occupy a cell.
      */
     private void populate()
     {
         Random rand = Randomizer.getRandom();
-        field.clear();
         for(int row = 0; row < field.getDepth(); row++) {
             for(int col = 0; col < field.getWidth(); col++) {
                 
-                double probability = rand.nextDouble();
                 
                 if(rand.nextDouble() <= TIGERSHARK_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);

@@ -1,5 +1,6 @@
 /**
  * Manages the time throughout the simulation. Incraments by 6-hour "steps", giving a time-aspect to the simulation.
+ * 
  *
  * @author Adarsh & Jushan
  * @version 16.02.2026 19:05
