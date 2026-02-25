@@ -1,6 +1,8 @@
 import java.util.Random;
 /**
- * Write a description of class Weather here.
+ * Weather manages the current weather state in the simulation
+ * The weather changes based on a probability at every 8 steps and is able to
+ * influence organism behaviour such as plant growth and animal survival
  *
  * @author Jushan and Adarsh
  * @version v1
@@ -9,19 +11,21 @@ public class Weather
 {
     private static final Random RANDOM = Randomizer.getRandom();
 
-    // current weather
+    // The current weather type
     private WeatherType currentWeather;
+    
     /**
-     * Constructor for objects of class Weather
+     * Constructor for objects of class Weather with initial state of CLEAR
      */
     public Weather()
     {
         currentWeather = WeatherType.CLEAR;
-        
     }
 
     /**
-     * Updating weather with probabilities
+     * Update the weather when called (every 8 steps)
+     * The weather is selected on a random basis using fixed probabilities where 
+     * CLEAR is 50%, RAIN is 15%, STORM is 10% and CLOUDY is 25%
      */
     public void updateWeather()
     {
@@ -48,7 +52,9 @@ public class Weather
     
     
     /**
-     * GETTER METHOD WHICH RETURNS CURRENT WEATHER TYPE
+     * Returns the current weather
+     * 
+     * @return The current WeatherType
      */
     public WeatherType getWeather()
     {
@@ -56,11 +62,11 @@ public class Weather
     }
     
     /**
-     * When simulation is reset, weather type should set back to clear
+     * Resets the weather type to its default state which is Clear
+     * Used when simulation is reset
      */
     public void reset()
     {
         currentWeather = WeatherType.CLEAR;
     }
-    
 }

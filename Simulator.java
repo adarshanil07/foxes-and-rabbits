@@ -1,10 +1,11 @@
 import java.util.*;
 
 /**
- * A simple predator-prey simulator, based on a rectangular field containing 
- * rabbits and foxes.
+ * The Simulator class manages the whole simulation of organisms.
+ * It controls progression, weather updates and organism
+ * interactions within the simulation field
  * 
- * @author David J. Barnes and Michael Kölling
+ * @author David J. Barnes, Michael Kölling, Jushan and Adarsh
  * @version 7.1
  */
 public class Simulator
@@ -30,14 +31,13 @@ public class Simulator
     private static final double MARINEALGAE_CREATION_PROBABILITY = 0.90;
 
 
-    //clock
+    // The clock controlling time progression and step count during simluation
     private Clock clock = new Clock();
     // The current state of the field.
     private Field field;
-    // The current step of the simulation.
     // A graphical view of the simulation.
     private final SimulatorView view;
-    // Weather System for weather
+    // Weather System used to manage current weather condition
     private Weather weather;
 
     /**
@@ -52,6 +52,7 @@ public class Simulator
     
     /**
      * Create a simulation field with the given size.
+     * 
      * @param depth Depth of the field. Must be greater than zero.
      * @param width Width of the field. Must be greater than zero.
      */
@@ -67,7 +68,6 @@ public class Simulator
         field = new Field(depth, width);
         view = new SimulatorView(depth, width);
 
-        // setting up weather 
         weather = new Weather();
         field.setWeather(weather.getWeather());
         
@@ -76,7 +76,7 @@ public class Simulator
     
     /**
      * Run the simulation from its current state for a reasonably long 
-     * period (4000 steps).
+     * period (700 steps).
      */
     public void runLongSimulation()
     {
@@ -86,6 +86,7 @@ public class Simulator
     /**
      * Run the simulation for the given number of steps.
      * Stop before the given number of steps if it ceases to be viable.
+     * 
      * @param numSteps The number of steps to run for.
      */
     public void simulate(int numSteps)
@@ -99,20 +100,21 @@ public class Simulator
     
     /**
      * Run the simulation from its current state for a single step.
-     * Iterate over the whole field updating the state of each fox and rabbit.
+     * Each organism acts based on the current field and writes its 
+     * updated state into a separate nextFieldState. The next state
+     * replaces the current states once all the organisms have "acted".
      */
     public void simulateOneStep()
     {
         clock.tick();
         
-        // if step count mod 8 == 0 then we will update weather
+        // Update weather every 8 steps
         if ((clock.getStepCount() % 8) == 0) {
             weather.updateWeather();    
         }
         
 
-        // Use a separate Field to store the starting state of
-        // the next step.
+        // Create the next field state
         Field nextFieldState = new Field(field.getDepth(), field.getWidth());
 
         // sets Weather for a field
@@ -123,7 +125,7 @@ public class Simulator
             anOrganism.act(field, nextFieldState, clock.getCurrentTime());
         }
         
-        // Replace the old state with the new one.
+        // Replace the old state with the newly built state
         field = nextFieldState;
 
         reportStats();
@@ -132,6 +134,8 @@ public class Simulator
         
     /**
      * Reset the simulation to a starting position.
+     * This resets the clock, resets weather to CLEAR, clears the field,
+     * repopulates and also updates the view.
      */
     public void reset()
     {
@@ -146,7 +150,8 @@ public class Simulator
     }
     
     /**
-     * Randomly populate the field with foxes and rabbits.
+     * Randomly populate the field with organisms based on the configuration 
+     * probability constants
      */
     private void populate()
     {
@@ -202,7 +207,7 @@ public class Simulator
     
 
     /**
-     * Report on the number of each type of animal in the field.
+     * Report statistics about the field population currently
      */
     public void reportStats()
     {
@@ -212,6 +217,7 @@ public class Simulator
     
     /**
      * Pause for a given time.
+     * 
      * @param milliseconds The time to pause for, in milliseconds
      */
     private void delay(int milliseconds)

@@ -1,48 +1,55 @@
 
 /**
- * Write a description of class MarineAlgae here.
- *
+ * MarineAlgae is a plant organism within the simulation.
+ * 
  * @author Jushan and Adarsh
- * @version v1s
+ * @version v1
  */
 public class MarineAlgae extends Plant
-{
-    // DECIDE ALL AGES AND STUFF FOR ANIMALS/PLANTS (this is just rough)
-    
-    // max age of plant
+{    
+    // Maximum age (in steps) that MarineAlgae can reach
     private static final int MAX_AGE = 120;
-    // chance of spreading per step
+    // Default probability that MarineAlgae will spread in a step
     private static final double CHANCE_OF_SPREAD = 0.03;
-    // food value of kelp
+    // Food units/points provided when the plant is eaten.
     private static final int FOOD_VALUE = 15;
     
     /**
-     * Constructor for objects of class MarineAlgae
+     * Creates a MarineAlgae plant at a specific location
+     * 
+     * @param location The initial location of the MarineAlgae
      */
     public MarineAlgae(Location location)
     {
-        // initialise instance variables
         super(location);
     }
 
     /**
-     * GETTER METHOD FOR GETTING MAX AGE
+     * Returns the maximum age of MarineAlgae
+     * 
+     * @return The maximum age of MarineAlgae in steps
      */
+    @Override
     protected int getMaxAge()
     {
         return MAX_AGE;
     }
     
     /**
-     * Get probability of seeds spreading 
+     * Returns default probability that MarineAlgae spreads per step
+     * 
+     * @return chance of spread within range 0.0 - 1.0
      */
+    @Override
     protected double getChanceOfSpread()
     {
         return CHANCE_OF_SPREAD;
     }
     
     /**
-     * food value
+     * Returns the food value of the MarineAlgae
+     * 
+     * @return The number of food units/points provided when eaten
      */
     protected int foodValue()
     {
@@ -50,7 +57,10 @@ public class MarineAlgae extends Plant
     }
     
     /**
-     * creating a new seedling
+     * Creates a seedling of MarineAlgae at a specific location
+     * 
+     * @param location The location for the just created seedling
+     * @return A MarineAlgae instance 
      */
     protected Plant newSeedling(Location location)
     {
