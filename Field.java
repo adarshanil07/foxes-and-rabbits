@@ -1,30 +1,33 @@
 import java.util.*;
 
 /**
- * Represent a rectangular grid of field positions.
- * Each position is able to store a single animal/object.
+ * Field class represents a rectangular grid of field positions.
+ * Each location can contain at most one Organism.
+ The field also stores the current weather which affects organisms.
  * 
- * @author David J. Barnes and Michael Kölling
+ * @author David J. Barnes, Michael Kölling, Jushan and Adarsh
  * @version 7.0
  */
 public class Field
 {
-    // A random number generator for providing random locations.
     private static final Random rand = Randomizer.getRandom();
     
-    // stores weather
+    // Current weather condition which affects this field
     private WeatherType weather = WeatherType.CLEAR;
     
     // The dimensions of the field.
     private final int depth, width;
-    // Animals mapped by location.
+    
+    // Mapping from location to organism stored at that location
     private final Map<Location, Organism> field = new HashMap<>();
-    // The animals.
+    
+    // List of organisms currently known to the field
     private final List<Organism> organisms = new ArrayList<>();
 
     /**
      * Represent a field of the given dimensions.
-     * @param depth The depth of the field.
+     * 
+     * @param depth The depth of the field. 
      * @param width The width of the field.
      */
     public Field(int depth, int width)
@@ -34,11 +37,12 @@ public class Field
     }
 
     /**
-     * Place an animal at the given location.
+     * Place an organism at the specific location.
      * If there is already an animal at the location it will
-     * be lost.
-     * @param anAnimal The animal to be placed.
-     * @param location Where to place the animal.
+     * be replaced.
+     * 
+     * @param anAnimal The organism to be placed.
+     * @param location Where to place the organism.
      */
     public void place(Organism anOrganism, Location location)
     {
@@ -52,9 +56,10 @@ public class Field
     }
     
     /**
-     * Return the animal at the given location, if any.
+     * Return the organism at the specific location, if any.
+     * 
      * @param location Where in the field.
-     * @return The animal at the given location, or null if there is none.
+     * @return The organism at the given location, or null if there is none.
      */
     public Organism getOrganismAt(Location location)
     {
@@ -62,7 +67,9 @@ public class Field
     }
 
     /**
-     * SETTER Method for weather
+     * Set the current weather condition for this field
+     * 
+     * @param weather The new weather condition
      */
     public void setWeather(WeatherType weather)
     {
@@ -70,14 +77,20 @@ public class Field
     }
     
     /**
-     * GETTER METHOD FOR WEATHER
+     * Returns the current weather condition of this field
+     * 
+     * return The current WeatherType
      */
     public WeatherType getWeather()
     {
         return this.weather;
     }
+    
     /**
-     * Get a shuffled list of the free adjacent locations.
+     * Return a shuffled list of the free adjacent locations.
+     * A location is free if it contains no organism or it contains an organism
+     * which is no longer alive
+     * 
      * @param location Get locations adjacent to this.
      * @return A list of free adjacent locations.
      */
@@ -101,7 +114,8 @@ public class Field
      * Return a shuffled list of locations adjacent to the given one.
      * The list will not include the location itself.
      * All locations will lie within the grid.
-     * @param location The location from which to generate adjacencies.
+     * 
+     * @param location The location from which to generate adjacent locations.
      * @return A list of locations adjacent to that given.
      */
     public List<Location> getAdjacentLocations(Location location)
@@ -132,7 +146,7 @@ public class Field
     }
 
     /**
-     * Print out the number of foxes and rabbits in the field.
+     * Print the population statistics for each organism type within the field
      */
     public void fieldStats()
     {
@@ -191,7 +205,7 @@ public class Field
     }
 
     /**
-     * Empty the field.
+     * Removes all organisms from the field
      */
     public void clear()
     {
@@ -200,8 +214,10 @@ public class Field
     }
 
     /**
-     * Return whether there is at least one predator and one prey in the field.
-     * @return true if there is at least one predator and one prey in the field.
+     * Return whether the simulation is still viable, therefore containing at least one
+     * living predator and one living prey
+     * 
+     * @return true if there is at least one predator and one prey are alive, false otherwise
      */
     public boolean isViable()
     {
@@ -225,7 +241,9 @@ public class Field
     }
     
     /**
-     * Get the list of animals.
+     * Return the list of organisms currently stored within the field
+     * 
+     * @return The organism list for iteration
      */
     public List<Organism> getOrganisms()
     {
@@ -234,6 +252,7 @@ public class Field
 
     /**
      * Return the depth of the field.
+     * 
      * @return The depth of the field.
      */
     public int getDepth()
@@ -243,6 +262,7 @@ public class Field
     
     /**
      * Return the width of the field.
+     * 
      * @return The width of the field.
      */
     public int getWidth()

@@ -1,23 +1,27 @@
 import java.util.Random;
 /**
- * Enumeration class Sex - write a description of the enum class here
+ * The Sex enum represents the biological sex of an organism.
+ * Provides two possible values: MALE and FEMALE
+ * A helper method is included to generate a random sex value
  *
- * @author (your name her   e)
- * @version (version number or date here)
+ * @author Jushan and Adarsh
+ * @version v1
  */
 public enum Sex
 {
     MALE, FEMALE;
     
+    // Random number generator which is used to select a random sex
     private static Random rand = Randomizer.getRandom();
     /**
-     * METHOD
+     * Return a randomly selected Sex value (MALE or FEMALE)
+     * 
+     * @return A randomly chosen Sex constant
      */
     public Sex getSex()
     {
-        Sex[] sexes = values();                             // values() is a method which returns an array of both MALE, FEMALE
-        return sexes[rand.nextInt(sexes.length)];           // length of sexes is 2, generates a random number between those which is 0/1 and then goes into array sexes and returns either 
-                                                            // sexes[0] or sexes[1] which is either MALE or FEMALE
+        Sex[] sexes = values();                            
+        return sexes[rand.nextInt(sexes.length)];           
     }
 }
 
