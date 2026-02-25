@@ -14,9 +14,9 @@ public class Octopus extends Predator
     
     private static final int MAX_LITTER_SIZE = 8;
     
-    private static final double BREEDING_PROBABILITY = 0.35;
+    private static final double BREEDING_PROBABILITY = 0.08;
     
-    private static final int BREEDING_AGE = 60;
+    private static final int BREEDING_AGE = 50;
 
     private static final int PREGNANCY_DURATION = 6;
     
