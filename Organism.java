@@ -8,7 +8,7 @@
  * Like we cannot do new Organism(location);
  * 
  * @author Jushan and Adarsh
- * @version v1
+ * @Date 25.02.26 14:45
  */
 public abstract class Organism
 {
@@ -26,15 +26,17 @@ public abstract class Organism
     }
     
     /**
-     * NEED TO HAVE the act() method in here somehow 
      * 
-     * *DELETE AFTER* We do not put implementation inside the organism.act() since the behaviour is different for predators, prey, etc.
-     * We are essentially telling Java that anything that is an organism should implement this method, but all subclassess will provide a diff version of act()
+     * 
+     * Abstract class allows predators and prey to act differently by implementing different code which carry out different actions.
+     * @param - the current field shown in the simulation
+     * @param - the next field that will be shown in the simulation, which is used to find this organisms next location
+     * @param - the current time in the simulation
      */
     public abstract void act(Field currentField, Field nextFieldState, TimeOfDay currentTime);
 
     /**
-     * Returns whether or not the organism is alive or not
+     * @return - whether or not the organism is alive or not
      */
     public boolean isAlive()
     {
@@ -44,15 +46,14 @@ public abstract class Organism
     /**
      * Marking an organism as dead and preventing logic from placing dead organisms into nextFieldState
      */
-    protected void setDead()                                        // we use protected here since animals/plants need to be able to access it, but we do not want everything to access it
+    protected void setDead()   // we use protected here since animals/plants need to be able to access it, but we do not want everything to access it
     {
         alive = false;
         location = null;
     }
     
     /**
-     * Returns the current location of the organism 
-     * and it returns "null" if dead
+     * @return the current location of the organism and it returns "null" if dead
      */
     public Location getLocation()
     {
@@ -60,8 +61,8 @@ public abstract class Organism
     }
     
     /**
-     * Update the organism's location
-     * Only call when the organism has moved locations
+     * Update the organism's location for the next field
+     * @param - new location in the next field
      */
     protected void setLocation(Location newLocation)                
     {

@@ -18,7 +18,7 @@ public class Simulator
     // The probability that a tiger shark will be created in any given grid position.
     private static final double TIGERSHARK_CREATION_PROBABILITY = 0.020;
     //The probability that an octopus will be created in any given grid position.
-    private static final double OCTOPUS_CREATION_PROBABILITY = 0.022;
+    private static final double OCTOPUS_CREATION_PROBABILITY = 0.025;
     // The probability that a parrot fish will be created in any given position.
     private static final double PARROTFISH_CREATION_PROBABILITY = 0.235;  
     // The probability that a krill will be created in any given position.

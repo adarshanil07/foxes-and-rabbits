@@ -2,13 +2,16 @@ import java.util.List;
 import java.util.Iterator;
 
 /**
- * Write a description of class Predator here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * The Predator class inherits the Animal class, making methods specific towards how predators should
+ * act.
+ * 
+ * @Adarsh and Jushan
+ * @Date: 25.02.26 14:14
  */
 public abstract class Predator extends Animal
 {
+    // The initial hunger level (Predators can last 30 steps with no food from the beginning of the
+    // simulation.
     private static final int INITIAL_FOOD_LEVEL = 30;
 
     /**
@@ -20,29 +23,39 @@ public abstract class Predator extends Animal
         super(location);
     }
     
+    /**
+     * @return - inital hunger level.
+     */
     public int initialFoodLevel() 
     {
         return INITIAL_FOOD_LEVEL;
     }
-    
+
+    /**
+     * Checks whether there is a consumable organism nearby to eat and move to its location.
+     * The class also updates the hunger values of the organism, if the attempt to eat was successful.
+     * @param - the current field (allowing us to see adjacent organisms)
+     * @return - either a valid location where food is or no location (if no organism is found)
+     * 
+     */
     public Location getFoodLocation(Field field) {
-        List<Location> adjacentLocations = field.getAdjacentLocations(getLocation());
+        List<Location> adjacentLocations = field.getAdjacentLocations(getLocation()); // creates a list of the adjacent locations, from the current location
         Iterator<Location> it = adjacentLocations.iterator();
         
         Location foodLocation = null;
-        while (foodLocation == null && it.hasNext()) {
-            Location nextLocation = it.next();
-            Organism organism = field.getOrganismAt(nextLocation);
-            if (organism != null && isEdible(organism) && organism.isAlive()) {
+        while (foodLocation == null && it.hasNext()) { // goes through each adjacent location until either a location is found or there are no more places in the list 
+            Location nextLocation = it.next(); // stores the next location in the list.
+            Organism organism = field.getOrganismAt(nextLocation); // finds the organism at specified location "nextLocation"
+            if (organism != null && isEdible(organism) && organism.isAlive()) { // checks whether there is a valid organism that is alive and can be eaten.
                 
                 if (organism instanceof Animal animal)
                 {                     
-                    if (checkHungerMax(animal)) {
+                    if (checkHungerMax(animal)) { // if eating the organism breaches the max value, it cannot eat it
                         return null;
                     }
-                    animal.setDead();
-                    changeHungerValues(animal);
-                    foodLocation = nextLocation;
+                    animal.setDead(); // kills the animal being eating
+                    changeHungerValues(animal); // updates the animals hunger
+                    foodLocation = nextLocation; // changes the location to the eaten animals location
                 }
             }
         }
@@ -50,32 +63,40 @@ public abstract class Predator extends Animal
     }
     
     /**
-     * returns true/false depending if hunger i full or not 
+     * @param - the animal that is trying to be eaten.
+     * @return - whether or not eating this specfic animal would take it over its max food level
      */
     public boolean checkHungerMax(Animal animal)
     {  
         return (animal.foodValue() + this.hungerLevel) >= this.maxFoodLevel();
     }
     
+    
+    /**
+     * Updates the hunger level depending on how much FOOD_VALUE the eaten animal gives.
+     * @param - the animal that is being eaten
+     */
     public void changeHungerValues(Animal animal) {
             eat(animal.foodValue());
     }
     
     
+    /**
+     * After each step, this method updates the character: increasing its age, increasing hunger, checking and updating its infection
+     * and finally checking and updating pregnancy for potential offspring.
+     * @param - the current field, giving access to the organisms currently adjacent to the animal
+     * @param - the next field, allowing the method to know where to move and place itself for the next step
+     * @param - the current time, which affects how certain animals act at different times of the day (e.g. Nocturnal only eat at night)
+     */
     public void act(Field currentField, Field nextFieldState, TimeOfDay currentTime) {
         
-        ;
+        incrementAge(); // Increases the age by 1
+        decrementHunger();  // Decreases food level by 1  
+        updateInfection(); // checks and updates infection (already 
+        spreadInfection(currentField); // spreads infection to adjacent peopke
         
-        // NEED TO CHECK IF THESE ARE BAD PROGRAMMING PRACTICE SINCE WE ARE CALLING METHODS
-        // FROM THE CLASS ABOVE IT IN THE HIERARCHY (ANIMAL)
-        incrementAge();
-        decrementHunger();    
-        updateInfection();
-        spreadInfection(currentField);
+        WeatherType weather = currentField.getWeather(); // current weather
         
-        // weather can affect hunger levels ----- NEED TO FIGURE OUT IF THIS IS BAD PROGRAMMING PRACTICE AND IF HELPER METHOD NEEDED
-        WeatherType weather = currentField.getWeather();
-        // hunger hit
         int hungerHit = getWeatherAffectedHungerHit(weather);
         for (int i = 0; i < hungerHit; i++) {
             decrementHunger();
@@ -97,11 +118,13 @@ public abstract class Predator extends Animal
             if (pregnant) {
                 pregnancyCounter--;
             
-                if (pregnancyCounter <= 0) {
+                if (pregnancyCounter <= 0) { // if pregnancy ends, birth is given and cycle reset
                     endPregnancy(nextFieldState);
                 }}
+                // if pregnancy hasn't started, a check is done to see if animal can get pregnant.
             else if (checkPregnancyPossible(currentField)) {startPregnancy();}
             
+            // if the animal isn't active, it stays still in its position and doesn't eat.
             if(!isActiveAt(currentTime)) {
                 nextFieldState.place(this, getLocation());
                 return;
@@ -119,7 +142,7 @@ public abstract class Predator extends Animal
                 nextFieldState.place(this, nextLocation);
             }
             
-            else { // No free positions means the animal dies.
+            else { // No free positions means the animal dies due to overcrowding
                 setDead();
             }
         }

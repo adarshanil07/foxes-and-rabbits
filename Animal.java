@@ -1,16 +1,12 @@
-// maybe use whole package, not sure yet will figure later
-//NOTES
-//- Try add a current location parameter -> Reduces the number of times adjacent locations has to be used.
-
 import java.util.List;
-import java.util.Random;            // MAYBE NO NEED
+import java.util.Random;           
 
 /**
  * Common elements of all animals (Prey and Predators)
  * Animals are organisms which may move, breed, age, etc.
  *
  * @author David J. Barnes, Michael Kölling, Jushan and Adarsh
- * @version 7.0
+ * @Date 25.02.25 14:54
  */
 public abstract class Animal extends Organism
 {
@@ -19,20 +15,24 @@ public abstract class Animal extends Organism
     // Animal's Sex
     private Sex gender;
     //countdown until birth of child
-    protected int pregnancyCounter = -1;
+    protected int pregnancyCounter = -1; // (-1 signifies the animal is not pregnant yet)
     //number of expected births in current cycle
     protected int numBirths = 0;
     //indicates whether animal pregnant or not, initially NOT pregnant
     protected boolean pregnant = false;
-    //infected Animals
+    //whether or not the animal is infected
     private boolean infected;
-    
+    // number of days the animal can last after being infected
     private int infectionDays;
-    // hunger level 
+    // hunger level (number of days animal can last with no food)
     protected int hungerLevel;
     //Random
-    Random rand = Randomizer.getRandom();                   // MAYBE STAY CONSISTENT WITH LIKE RAND/ RANDOM across the whole project?
+    Random rand = Randomizer.getRandom();                   
+
     
+    /**
+     * Getters for constants that differ between each animal
+     */
     // max Animal age
     protected abstract int deathAge();
     // breeding age 
@@ -47,13 +47,13 @@ public abstract class Animal extends Organism
     protected abstract int maxFoodLevel();
     // active at what times of day.
     protected abstract boolean isActiveAt(TimeOfDay currentTime);
-    
-    protected abstract boolean isEdible(Organism organism);             // check if Prey or Organism
-    
+    // checks whether parameter organism is edible for the animal calling the method
+    protected abstract boolean isEdible(Organism organism);             
+    // the amount of food points an animal gains by eating this animal
     protected abstract int foodValue();
-
+    // the initial food level an animal is given (amount of steps from the beginning of the simulation an animal can last eating no food and dying of no other diseases)
     protected abstract int initialFoodLevel();
-    
+    // chance of being infected from the beginning of the simulation
     protected abstract double initialInfectionChance();
     
     protected abstract double diseaseSpread();

@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Set;
 /**
- * The TigerShark class creates an Predator with specific features which match a tiger shark. All constant characteristics are stored in here,
+ * The TigerShark class creates a Predator with specific features which match a tiger shark. All constant characteristics are stored in here,
  * with specifc methods that reflect the behavior of a tigershark.
  *
  * @Adarsh and Jushan 
@@ -12,14 +12,14 @@ public class TigerShark extends Predator
     // How much a tiger shark can eat before being full i.e. at its stomach capacity
     private static final int MAX_FOOD_LEVEL = 75;
     // The max number of children that be can produced in one pregnancy
-    private static final int MAX_LITTER_SIZE = 3;
+    private static final int MAX_LITTER_SIZE = 6;
     // The chance of a successful pregnancy, considering a partner a valid partner has been found
-    private static final double BREEDING_PROBABILITY = 0.4;
+    private static final double BREEDING_PROBABILITY = 0.7;
     // The minimum age required for breeding to take place
     private static final int BREEDING_AGE = 40;
     // Time required for a pregnancy to complete
-    private static final int PREGNANCY_DURATION = 10;
-    // The age at which a tiger shark dies.
+    private static final int PREGNANCY_DURATION = 5;
+    // The age at which a tiger shark dies, if they have not died of other causes
     private static final int DEATH_AGE = 480; 
     // probability of being infected initially (beginning of simulation)
     private static final double INITIAL_INFECTION_CHANCE = 0.01;
@@ -42,12 +42,13 @@ public class TigerShark extends Predator
         super(location); 
     }
     
-    @Override
+    
     /**
      * Class to check whether the organism attempted to being eaten is consumable for a tiger shark.
      * @param organism - the organism that is being eaten
      * @return boolean - whether or not the organism can be eaten or not
      */
+    @Override
     protected boolean isEdible(Organism organism) 
     {
         // iterates through each object and compares it the organism that the tiger shark is trying to eat
