@@ -55,9 +55,9 @@ public abstract class Animal extends Organism
     protected abstract int initialFoodLevel();
     // chance of being infected from the beginning of the simulation
     protected abstract double initialInfectionChance();
-    
+    // probability of disease being spread to adjacent organisms
     protected abstract double diseaseSpread();
-    
+    // how long the animal survives before dying due to illness
     protected abstract int diseaseDuration();
     
     
@@ -71,19 +71,22 @@ public abstract class Animal extends Organism
         age = 0;
         infected = false;
         infectionDays = 0;
-        gender = chooseGender();
+        gender = chooseGender(); // assigned a random gender
         hungerLevel = initialFoodLevel();
-        infected = isInitiallyInfected();
+        infected = isInitiallyInfected(); // animal may start of with infection
     }
     
-
+    /**
+     * Returns a random gender, either male or female.
+     * @return Sex enum - male or female
+     */
     public Sex chooseGender() {
         Sex[] genderValues = Sex.values();                          // 
         return genderValues[rand.nextInt(genderValues.length)];
     }
     
     /**
-     * GETTER METHOD FOR AGE
+     * @return current age (int)
      */
     public int getAge()
     {
@@ -91,7 +94,7 @@ public abstract class Animal extends Organism
     }
     
     /**
-     * GET SEX METHOD
+     * @return gender of animal 
      */
     public Sex getSex()
     {        
@@ -99,29 +102,31 @@ public abstract class Animal extends Organism
     }
 
     /**
-     * 
+     *  Updates the values for hunger.
+     *  @param the amount of "food points" gained from eating the organism
      */
     public void eat(int foodValue)
     {
         hungerLevel += foodValue;
         
-    
+        // If the new hunger level is higher than the max, it is set to the max.
         if (hungerLevel > maxFoodLevel()) {
             hungerLevel = maxFoodLevel();
         }
     }
     
     /**
-     * chance of being initially infected
+     * Uses probability to determine whether an animal is infected from the beginning of the progam,  
+     * @return whether or not the animal is infected at the beginning
      */
     private boolean isInitiallyInfected() 
     {
-        infected = (rand.nextDouble() <= initialInfectionChance());
+        infected = (rand.nextDouble() <= initialInfectionChance()); // if random value is smaller than assigned constant, it is infected.
         return infected;
     }
     
     /**
-     * CHECK IF INFECTED
+     * @return whether or not animal is infected currently
      */
     public boolean isInfected()
     {
@@ -140,7 +145,7 @@ public abstract class Animal extends Organism
     }
 
     /**
-     * Update the infection per step 
+     * Updates infection fields after each step.
      */
     protected void updateInfection()
     {
@@ -158,8 +163,8 @@ public abstract class Animal extends Organism
     
     
     /**
-     * Weather affects the spread probability, this returns the spread probability
-     * after weather's effects
+     * Weather affects the spread probability
+     * @return the spread probability after weather's effects
      */
     protected double getWeatherAffectedDiseaseSpread(WeatherType weather)
     {
@@ -231,13 +236,12 @@ public abstract class Animal extends Organism
     }
     
     /**
-     * INCREMENT AGE
+     * Increment the age after each step
      */
     public void incrementAge()
     {
         age++;
-        
-        // >= to make robust
+        // If the age exceeds or equals its death age, it dies.
         if (age >= deathAge())
         {
             setDead();
@@ -245,12 +249,12 @@ public abstract class Animal extends Organism
     }
 
     /**
-     * Decrement hunger level
+     * Decrement hunger level after each step
      */
     protected void decrementHunger()
     {
         hungerLevel--;
-        
+        // If the hunger level reaches 0 (or less) , it dies.
         if (hungerLevel <= 0)
         {
             setDead();
@@ -258,16 +262,8 @@ public abstract class Animal extends Organism
     }
     
     /**
-     * Act.
-     * @param currentField The current state of the field.
-     * @param nextFieldState The new state being built.
-     */
-    
-    
-    /**
-     * Weather affects pregnancy aswell
-     * 
-     * This returns the breeding probability after the effects of weather
+     * Weather affects pregnancy aswell by changing the chances of breeding in different weather conditions
+     * @return The breeding probability after the effects of weather
      */
     protected double getWeatherAffectedBreedingProbability(WeatherType weather) 
     {
@@ -300,7 +296,11 @@ public abstract class Animal extends Organism
         return breedChance;
     }
     
-    
+    /**
+     * Checks whether this animal can reproduce in its current situation
+     * Factors considered: gender, age, currently pregnant
+     * @return whether or not the animal can reproduce currently
+     */
     public boolean checkPregnancyPossible(Field currentField) 
     {
         // Checks whether the organism is a FEMALE, is above the breeding age, and not already pregnant.
@@ -317,39 +317,51 @@ public abstract class Animal extends Organism
         Location currentLocation = this.getLocation();
         List<Location> adjacentLocations = currentField.getAdjacentLocations(currentLocation);
         
+        // Cycles through each adjacent location, and checks whether a valid partner is found under the basis that the partner:
+        // is alive, is of the same species, is also above the breeding age and is a male
         for (Location location : adjacentLocations) {
             Organism organism = currentField.getOrganismAt(location);
             if (organism != null 
                 && organism.isAlive() 
                 && organism.getClass() == this.getClass() 
-                && organism instanceof Animal other
-                && other.getSex() == Sex.MALE) {
+                && organism instanceof Animal partner
+                && partner.getAge() >= partner.breedingAge()
+                && partner.getSex() == Sex.MALE) {
                 return true;
             }
         }
         return false;
     }
     
-    
+    /**
+     * Starts the pregnancy, by changing fields to match the new condition.
+     */
     public void startPregnancy() {
         pregnancyCounter = pregnancyDuration();
         pregnant = true;
         numBirths = rand.nextInt(maxLitterSize()) + 1;
     }
     
+    /**
+     * Ends the pregnancy, returning the animal back to it's original state and creating offspring.
+     * @param The field for the next step, so offspring can be placed
+     */
     public void endPregnancy(Field  nextFieldState) {
-        List<Location> freeLocations = nextFieldState.getFreeAdjacentLocations(getLocation());
-        for (int b = 0; b < numBirths && ! freeLocations.isEmpty(); b++) 
+        List<Location> freeLocations = nextFieldState.getFreeAdjacentLocations(getLocation()); // List of free locations
+        // Creates offspring until there are no free locations or the maximum number of offspring from one birth is reached for this animal
+        for (int b = 0; b < numBirths && ! freeLocations.isEmpty(); b++)
         {
-            Location newLocation = freeLocations.remove(0);
+            Location newLocation = freeLocations.remove(0); 
             Animal offspring = createYoung(newLocation);
             nextFieldState.place(offspring, newLocation);
         }
+        // Preganncy fields set back to default
         pregnancyCounter = - 1;
         numBirths = 0;
         pregnant = false;
     }
     
+    // Creates an object of the same class at a specified location
     protected abstract Animal createYoung(Location location);
     
 }

@@ -93,7 +93,7 @@ public class Simulator
     {
         reportStats();
         for(int n = 1; n <= numSteps && field.isViable(); n++) {
-            simulateOneStep();
+            simulateOneStep(); 
             delay(50);         // adjust this to change execution speed
         }
     }
@@ -142,9 +142,9 @@ public class Simulator
         clock.reset();
         
         weather.reset();
-        field.clear();
+        field.clear(); // removes all organisms from current field
         field.setWeather(weather.getWeather());         // sets current weather when reset which should be clear
-        populate();
+        populate(); // fills field with organisms again.
         view.showStatus(clock.getStepCount(), clock.getFormattedTime(), field);
     }
     
@@ -159,6 +159,8 @@ public class Simulator
             for(int col = 0; col < field.getWidth(); col++) {
                 
                 
+                // For each organism, if the random number is less than the probability, an organism is spawned.
+                // This process is repeated for every position in the gri
                 if(rand.nextDouble() <= TIGERSHARK_CREATION_PROBABILITY) {
                     Location location = new Location(row, col);
                     TigerShark tigershark = new TigerShark(location);
