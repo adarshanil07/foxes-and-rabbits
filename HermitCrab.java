@@ -16,7 +16,7 @@ public class HermitCrab extends Prey
     // The max number of children that be can produced in one pregnancy
     private static final int MAX_LITTER_SIZE = 5;
     // The minimum age required for breeding to take place
-    private static final double BREEDING_PROBABILITY = 0.28;
+    private static final double BREEDING_PROBABILITY = 0.2;
     // The minimum age required for breeding to take place
     private static final int BREEDING_AGE = 30;
     // Time required for a pregnancy to complete

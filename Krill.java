@@ -18,7 +18,7 @@ public class Krill extends Prey
     // The chance of a successful pregnancy, considering a partner a valid partner has been found
     private static final double BREEDING_PROBABILITY = 0.22;
     // The minimum age required for breeding to take place
-    private static final int BREEDING_AGE = 20;
+    private static final int BREEDING_AGE = 16;
     // Time required for a pregnancy to complete g
     private static final int PREGNANCY_DURATION = 2;
     // probability of being infected initially (beginning of simulation)
@@ -33,7 +33,7 @@ public class Krill extends Prey
     // Times of the day that a krill eats (is active)
     private static final Set<TimeOfDay> ACTIVE_TIMES = Set.of(TimeOfDay.DAWN, TimeOfDay.MIDDAY, TimeOfDay.DUSK, TimeOfDay.MIDNIGHT);
     // The types of species that a krill can consume
-    private static final List<Class<?>> EDIBLE_ORGANISMS = List.of(MarineAlgae.class);
+    private static final List<Class<?>> EDIBLE_ORGANISMS = List.of(MarineAlgae.class, Kelp.class);
     
     /**
      * Constructor for objects of class Krill

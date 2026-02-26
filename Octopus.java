@@ -10,13 +10,13 @@ import java.util.Set;
 public class Octopus extends Predator
 {
     // How much a octopus can eat before being full i.e. at its stomach capacity
-    private static final int MAX_FOOD_LEVEL = 90;
+    private static final int MAX_FOOD_LEVEL = 120;
     // The max number of children that be can produced in one pregnancy
     private static final int MAX_LITTER_SIZE = 8;
     // The chance of a successful pregnancy, considering a partner a valid partner has been found    
-    private static final double BREEDING_PROBABILITY = 0.5;
+    private static final double BREEDING_PROBABILITY = 0.6;
     // The minimum age required for breeding to take place
-    private static final int BREEDING_AGE = 20;
+    private static final int BREEDING_AGE = 60;
     // Time required for a pregnancy to complete
     private static final int PREGNANCY_DURATION = 6;
     // The age at which an octopus dies, if they have not died of other causes

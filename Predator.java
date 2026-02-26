@@ -12,7 +12,7 @@ public abstract class Predator extends Animal
 {
     // The initial hunger level (Predators can last 30 steps with no food from the beginning of the
     // simulation.
-    private static final int INITIAL_FOOD_LEVEL = 30;
+    private static final int INITIAL_FOOD_LEVEL = 60;
 
     /**
      * Constructor for objects of class Predator

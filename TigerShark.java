@@ -10,7 +10,7 @@ import java.util.Set;
 public class TigerShark extends Predator
 {
     // How much a tiger shark can eat before being full i.e. at its stomach capacity
-    private static final int MAX_FOOD_LEVEL = 75;
+    private static final int MAX_FOOD_LEVEL = 140;
     // The max number of children that be can produced in one pregnancy
     private static final int MAX_LITTER_SIZE = 6;
     // The chance of a successful pregnancy, considering a partner a valid partner has been found
@@ -18,7 +18,7 @@ public class TigerShark extends Predator
     // The minimum age required for breeding to take place
     private static final int BREEDING_AGE = 40;
     // Time required for a pregnancy to complete
-    private static final int PREGNANCY_DURATION = 5;
+    private static final int PREGNANCY_DURATION = 10;
     // The age at which a tiger shark dies, if they have not died of other causes
     private static final int DEATH_AGE = 480; 
     // probability of being infected initially (beginning of simulation)
@@ -26,11 +26,11 @@ public class TigerShark extends Predator
     // probability of disease spreading
     private static final double DISEASE_SPREAD = 0.1;
     // how long the infection lasts before death 
-    private static final int DISEASE_DURATION = 20;
+    private static final int DISEASE_DURATION = 30;
     // Times of the day that a tiger shark hunts (is active)
     private static Set<TimeOfDay> ACTIVE_TIMES = Set.of(TimeOfDay.MIDDAY, TimeOfDay.DAWN);
     // The types of species that a tiger shark can consume.
-    private static List<Class<?>> EDIBLE_ORGANISMS = List.of(Parrotfish.class, Krill.class); //Krill.class);
+    private static List<Class<?>> EDIBLE_ORGANISMS = List.of(Parrotfish.class, Krill.class, Kelp.class, MarineAlgae.class); //Krill.class);
 
     
 

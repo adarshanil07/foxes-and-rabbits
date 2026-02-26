@@ -10,7 +10,7 @@ public class MarineAlgae extends Plant
     // Maximum age (in steps) that MarineAlgae can reach
     private static final int MAX_AGE = 120;
     // Default probability that MarineAlgae will spread in a step
-    private static final double CHANCE_OF_SPREAD = 0.03;
+    private static final double CHANCE_OF_SPREAD = 0.025;
     // Food units/points provided when the plant is eaten.
     private static final int FOOD_VALUE = 15;
     

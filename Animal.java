@@ -108,11 +108,6 @@ public abstract class Animal extends Organism
     public void eat(int foodValue)
     {
         hungerLevel += foodValue;
-        
-        // If the new hunger level is higher than the max, it is set to the max.
-        if (hungerLevel > maxFoodLevel()) {
-            hungerLevel = maxFoodLevel();
-        }
     }
     
     /**
@@ -325,7 +320,6 @@ public abstract class Animal extends Organism
                 && organism.isAlive() 
                 && organism.getClass() == this.getClass() 
                 && organism instanceof Animal partner
-                && partner.getAge() >= partner.breedingAge()
                 && partner.getSex() == Sex.MALE) {
                 return true;
             }
